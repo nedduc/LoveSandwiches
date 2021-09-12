@@ -19,19 +19,29 @@ def get_sales_data():
     """
 
 
-print("please enter sales data from the last market.")
-print("Data should be six numbers, sepeartaed by comas.")
-print("Example: 10,20,30,40,50,60\n")
+    print("please enter sales data from the last market.")
+    print("Data should be six numbers, sepeartaed by comas.")
+    print("Example: 10,20,30,40,50,60\n")
 
-data_str = input("Enter your data here: ")
-print(f"The data provided is {data_str}")
+    data_str = input("Enter your data here: ")
+
+    sales_data = data_str.split(",")
+    validate_data(sales_data)
+
+
+def validate_data(values):
+    """ Inside the try, converts all string values into intergers.
+    Raises vallueError, if strings cannot be converted into int,
+    or if there aren't exactly 6 values.
+    """
+    try:
+        if len(values) != 6:
+            raise ValueError(
+                f"Exactly 6 values required, you provide {len(values)}"
+            )
+    except ValueError as e:
+                print(f"Invalid data: {e}, please try again.\n")
+    print(values)
+
 
 get_sales_data()
-
-"""
-this was to check files were working
-sales = SHEET.worksheet('sales')
-
-data = sales.get_all_values()
-print(data)
-"""
