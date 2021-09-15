@@ -67,9 +67,9 @@ def update_sales_worksheet(data):
 
 """
 def update_surplus_worksheet(data):
-    """
+    
     Update surplus worksheet, add new row with the list data provided
-    """
+    
     print("Updating surplus worksheet...\n")
     surplus_worksheet = SHEET.worksheet("surplus")
     surplus_worksheet.append_row(data)
@@ -77,10 +77,10 @@ def update_surplus_worksheet(data):
 """
 """
 def update_worksheet(data, worksheet):
-    """
-    Recieve a list of intergers to be inserted into a worksheet.
-    Update the relevant worksheet with the data provided
-    """
+    
+Receive a list of intergers to be inserted into a worksheet.
+Update the relevant worksheet with the data provided
+    
     print(f"updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
@@ -105,6 +105,21 @@ def calculate_surplus_data(sales_row):
     return surplus_data
 
 
+def get_last_5_entries_sales():
+    """
+    Collects collumns of data from sales from worksheet, collecting
+    the last 5 entries for each sandich and returns the data
+    as a list of list.
+    """
+    sales = SHEET.worksheet("sales")
+
+    columns = []
+    for ind in range(1, 7):
+        column = sales.col_values(ind)
+        columns.append(column[-5:])
+
+return columns
+
 def main():
     """
     Run all program functions
@@ -117,4 +132,6 @@ def main():
 
 
 print("Welcome to Love Sandwiches Data Automation")
-main()
+#main()
+
+sales_columns = get_last_5_entries_sales()
